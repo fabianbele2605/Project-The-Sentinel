@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package sentinel;
+option go_package = "sentinel-agent/proto";
+
+
+enum ServerStatus {
+    HEALTHY = 0;
+    SLOW = 1;
+    DOWN = 2;
+}
+
+message MetricsReport {
+    string agent_id = 1;
+    int64 timestamp = 2;
+    ServerStatus status = 3;
+
+    // Metrica de DESING.md
+    float cpu_usage = 4;
+    float ram_usage = 5;
+    float disk_usage = 6;
+    float response_time_ms = 7;
+    float load_average = 8;
+    float error_rate = 9;
+    float swap_usage = 10;
+    string api_key = 11;
+}
+
+service SentinelService {
+    rpc SendMetrics(MetricsReport) returns (MetricsResponse);
+}
+
+message MetricsResponse {
+    bool success = 1;
+    string message = 2;
+}

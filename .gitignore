@@ -1,0 +1,104 @@
+# 🛡️ The Sentinel - GitIgnore
+
+# ===== GO AGENT =====
+# Binaries
+agent/sentinel-agent
+agent/test_metrics
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test files
+*.test
+*.out
+
+# Go dependency directories
+agent/vendor/
+
+# Go module cache
+go.sum
+
+# ===== NODE.JS BACKEND =====
+# Dependencies
+backend/node_modules/
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+
+# Build outputs
+backend/dist/
+backend/build/
+
+# Runtime data
+backend/pids
+backend/*.pid
+backend/*.seed
+backend/*.pid.lock
+
+# Coverage directory used by tools like istanbul
+backend/coverage/
+backend/.nyc_output
+
+# Environment variables
+backend/.env
+backend/.env.local
+backend/.env.development.local
+backend/.env.test.local
+backend/.env.production.local
+
+# ===== DEVELOPMENT =====
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===== TEMPORARY FILES =====
+# Test files
+agent/test_*.go
+backend/test_*
+
+# Backup files
+*.bak
+*.backup
+*.tmp
+
+# ===== SECURITY =====
+# API Keys and secrets
+.env
+*.key
+*.pem
+secrets/
+config/secrets.json
+
+# ===== FUTURE ADDITIONS =====
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Kubernetes
+k8s/secrets/
