@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { DatabaseService } from '../database/database.service';
 
 interface MetricsReport {
     agentId: string;
@@ -21,8 +22,9 @@ interface MetricsResponse {
 
 @Injectable()
 export class MetricsService {
+    constructor(private readonly databaseService: DatabaseService) {}
 
-    processMetrics(data: MetricsReport): MetricsResponse {
+    async processMetrics(data: MetricsReport): Promise<MetricsResponse> {
         // Debug: mostrar que API key recibimos
         console.log('🔍 Full data received:', JSON.stringify(data, null, 2));
         console.log(`🔑 Received API key: ${data.apiKey}`);
@@ -43,8 +45,24 @@ export class MetricsService {
         console.log(`   Load: ${data.loadAverage}`);
 
 
-        // Aqui ira la logica de almacenamiento de DB
-        // Por ahora solo loggeamos
+        // Guardar métricas en la base de datos
+        try {
+            await this.databaseService.saveMetrics({
+                agentId: data.agentId,
+                cpuUsage: data.cpuUsage,
+                ramUsage: data.ramUsage,
+                diskUsage: data.diskUsage,
+                loadAverage: data.loadAverage,
+                swapUsage: data.swapUsage,
+                errorRate: data.errorRate,
+                responseTimeMs: data.responseTimeMs,
+                status: 'HEALTHY'
+            });
+            console.log('✅ Metrics saved to database');
+        } catch (error) {
+            console.error('❌ Error saving metrics:', error);
+            // No fallar el request por error de DB
+        }
 
         return {
             success: true,

@@ -26,8 +26,8 @@ export class MetricsController {
     constructor(private readonly metricsService: MetricsService) {}
 
     @GrpcMethod("SentinelService", "SendMetrics")
-    sendMetrics(data: MetricsReport): MetricsResponse {
+    async sendMetrics(data: MetricsReport): Promise<MetricsResponse> {
         console.log('🔍 Raw data in controller', data);
-        return this.metricsService.processMetrics(data);
+        return await this.metricsService.processMetrics(data);
     }
 }

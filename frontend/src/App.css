@@ -1,0 +1,140 @@
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --nasa-bg: #030508;
+  --nasa-panel: #0b101a;
+  --nasa-border: #1f2937;
+  --nasa-cyan: #00f3ff;    /* Color Primario */
+  --nasa-cyan-dim: rgba(0, 243, 255, 0.1);
+  --nasa-purple: #bd00ff;
+  --nasa-green: #00ff9d;
+  --nasa-orange: #ff9e00;
+  --text-main: #e2e8f0;
+  --text-muted: #64748b;
+}
+
+body {
+  background-color: var(--nasa-bg);
+  color: var(--text-main);
+  font-family: 'Rajdhani', sans-serif;
+  margin: 0;
+  /* Efecto de rejilla de fondo estilo radar */
+  background-image: 
+    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--nasa-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--nasa-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nasa-cyan);
+}
+
+
+
+/* AgentCard.css (o dentro de App.css) */
+.nasa-card {
+  background: rgba(11, 16, 26, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--nasa-border);
+  padding: 1.5rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  min-width: 250px;
+  overflow: hidden;
+}
+
+.nasa-card:hover {
+  border-color: var(--text-muted);
+  transform: translateY(-2px);
+}
+
+.nasa-card.active {
+  border-color: var(--nasa-cyan);
+  box-shadow: 0 0 15px var(--nasa-cyan-dim);
+  background: linear-gradient(135deg, rgba(0, 243, 255, 0.05) 0%, transparent 100%);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--nasa-border);
+  padding-bottom: 0.5rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--text-muted);
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.status-dot.pulse {
+  background-color: var(--nasa-cyan);
+  box-shadow: 0 0 8px var(--nasa-cyan);
+}
+
+.agent-id {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--nasa-cyan);
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.label {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.mono {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--text-main);
+}
+
+/* Decoraciones de esquinas */
+.corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.nasa-card.active .top-left {
+  top: 0; left: 0;
+  border-top-color: var(--nasa-cyan);
+  border-left-color: var(--nasa-cyan);
+}
+
+.nasa-card.active .bottom-right {
+  bottom: 0; right: 0;
+  border-bottom-color: var(--nasa-cyan);
+  border-right-color: var(--nasa-cyan);
+}
